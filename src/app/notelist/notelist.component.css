@@ -1,0 +1,16 @@
+.note-list {
+    
+    text-align: center;
+    align-items: center;
+}
+
+.note-list-item {
+    margin-left: 180px;
+    background-color: #f3c86d;
+    font-size: 100%;
+    color: #0c1321;
+    padding-top: 10px;
+    padding-bottom: 10px;
+	width: 900px;
+	border: 1px solid;
+}
