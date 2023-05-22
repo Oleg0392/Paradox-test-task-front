@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,11 +13,11 @@ import { HomeComponent } from './home/home.component';
 import { CreatenoteComponent } from './createnote/createnote.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'createnote', component: CreatenoteComponent},
-  {path: 'editnote/:id', component: EditnoteComponent},
-  {path: 'notelist', component: NotelistComponent},
-  {path: 'taglist', component: TaglistComponent}
+  { path: '', component: HomeComponent },
+  { path: 'createnote', component: CreatenoteComponent },
+  { path: 'editnote/:id', component: EditnoteComponent },
+  { path: 'notelist', component: NotelistComponent },
+  { path: 'taglist', component: TaglistComponent }
 ]
 
 @NgModule({
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

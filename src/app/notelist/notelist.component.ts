@@ -14,6 +14,7 @@ export class NotelistComponent {
 
   constructor(private noteService: NoteService, private router: Router){
     this.notes = this.noteService.getNotes();
+    this.noteService.getData();
   }
 
   goEditNote(NoteId: number): void {

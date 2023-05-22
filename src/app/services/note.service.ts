@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Note } from '../models/note';
 import { Tag } from '../models/tag';
+import { HttpClient } from '@angular/common/http';
+import { Observable, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +35,10 @@ export class NoteService {
     new Note(4,'note5','sdkddsfdsfdsf',this.tags2),
   ];
 
+  response: any;
+
   
-  constructor() { }
+  constructor(private client: HttpClient) { }
 
   getNotes(): Note[] {
     return this.notes;
@@ -49,4 +53,10 @@ export class NoteService {
     });
     return targetNote;
   }
+
+  getData(): void {
+    this.client.get('http://localhost:44318/api/note')
+    .subscribe((response) => { this.response = response; console.log(this.response) });
+  }
+
 }
