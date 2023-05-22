@@ -18,7 +18,6 @@ export class NotelistComponent {
 
   goEditNote(NoteId: number): void {
     console.log('goEditNote id:',NoteId);
-    this.router.navigate(['/editnote',{ id: NoteId }]);
   }
 
 }

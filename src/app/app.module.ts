@@ -14,7 +14,7 @@ import { CreatenoteComponent } from './createnote/createnote.component';
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'createnote', component: CreatenoteComponent},
-  {path: 'editnote', component: EditnoteComponent},
+  {path: 'editnote/:id', component: EditnoteComponent},
   {path: 'notelist', component: NotelistComponent},
   {path: 'taglist', component: TaglistComponent}
 ]

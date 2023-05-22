@@ -1,7 +1,8 @@
 <br>
 <div class="note-create-page">
     <h3>{{ note.name }}</h3>
-    <p><textarea rows="25" cols="70">
+    <p><textarea [(ngModel)]="note.raw" rows="25" cols="70">
+      {{ note.raw }}
     </textarea></p>
-    <p><button>Изменить заметку</button></p>
+    <p><button (click)="updateNote()">Изменить заметку</button></p>
   </div>
