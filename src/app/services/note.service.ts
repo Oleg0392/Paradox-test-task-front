@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Note } from '../models/note';
 import { Tag } from '../models/tag';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,17 +35,19 @@ export class NoteService {
   ];
 
   response: any;
+  Notes: Note[] = [];
 
-  
-  constructor(private client: HttpClient) { }
+  constructor(private client: HttpClient) { 
+  }
 
   getNotes(): Note[] {
-    return this.notes;
+    this.getData();
+    return this.Notes;
   }
 
   getNoteById(NoteId: number): Note {
     let targetNote: Note = new Note(-1,'NaN','NaN',[]);
-    this.notes.forEach(element => {
+    this.Notes.forEach(element => {
       if (element.id===NoteId) {
         targetNote = element;
       }
@@ -55,8 +56,20 @@ export class NoteService {
   }
 
   getData(): void {
-    this.client.get('http://localhost:44318/api/note')
-    .subscribe((response) => { this.response = response; console.log(this.response) });
+    this.client.get('https://localhost:44318/api/note')
+    .subscribe({
+      next: r => {
+        this.response = r;
+      },
+      error: err => {
+        console.error(err);
+      },
+      complete: () => {
+        console.log('load data complete.');
+      }      
+    });
+
+    this.Notes = (this.response as Note[]);
   }
 
 }

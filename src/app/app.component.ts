@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NoteService } from './services/note.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor()
-  {
-       
+  constructor(private noteService: NoteService) {      
+  }
+
+  async LoadData(): Promise<void> {
+    this.noteService.getData();
   }
   
 }

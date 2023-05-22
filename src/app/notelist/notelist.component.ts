@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NoteService } from '../services/note.service';
 import { Note } from '../models/note'
-import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-notelist',
@@ -12,9 +11,8 @@ export class NotelistComponent {
   
   notes: Note[] = [];
 
-  constructor(private noteService: NoteService, private router: Router){
+  constructor(private noteService: NoteService){
     this.notes = this.noteService.getNotes();
-    this.noteService.getData();
   }
 
   goEditNote(NoteId: number): void {
