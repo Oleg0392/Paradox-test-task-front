@@ -1,5 +1,5 @@
 <br>
 <br>
 <div class="note-list" *ngFor="let item of notes">
-    <a routerLink="/editnote/{{item.id}}"><div class="note-list-item">{{item.name}}</div></a>
+    <div class="note-list-item" (click)="goEditNote(item.noteID)">{{item.name}}</div>
 </div>

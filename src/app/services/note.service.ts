@@ -25,19 +25,22 @@ export class NoteService {
     new Tag(8,'uyoui'),
     new Tag(9,'wqwe')
   ];
-  
-  notes: Note[] = [
+
+  /*notes: Note[] = [
     new Note(0,'note1','sdkddsfdsfdsf',this.tags1),
     new Note(1,'note2','sdkddsfdsfdsf',this.tags2),
     new Note(2,'note3','sdkddsfdsfdsf',this.tags3),
     new Note(3,'note4','sdkddsfdsfdsf',this.tags1),
     new Note(4,'note5','sdkddsfdsfdsf',this.tags2),
-  ];
+  ];*/
 
+  hostUrl: string;
   response: any;
   Notes: Note[] = [];
 
   constructor(private client: HttpClient) { 
+    this.getData();
+    this.hostUrl = 'https://localhost:44318/api/note';
   }
 
   getNotes(): Note[] {
@@ -48,7 +51,7 @@ export class NoteService {
   getNoteById(NoteId: number): Note {
     let targetNote: Note = new Note(-1,'NaN','NaN',[]);
     this.Notes.forEach(element => {
-      if (element.id===NoteId) {
+      if (element.noteID===NoteId) {
         targetNote = element;
       }
     });
@@ -56,7 +59,7 @@ export class NoteService {
   }
 
   getData(): void {
-    this.client.get('https://localhost:44318/api/note')
+    this.client.get(this.hostUrl)
     .subscribe({
       next: r => {
         this.response = r;
@@ -66,10 +69,29 @@ export class NoteService {
       },
       complete: () => {
         console.log('load data complete.');
+        console.log('response',this.response);
       }      
     });
 
     this.Notes = (this.response as Note[]);
+  }
+
+  sendData(noteID: number): void {
+    let body = JSON.stringify(this.Notes[noteID]);
+    console.log('strnotes:',body);
+    
+    this.client.post(this.hostUrl, body)
+    .subscribe({
+      next: r => {
+        console.log(r)
+      },
+      error: err => {
+        console.error(err);
+      },
+      complete: () => {
+        console.log('data upload complete.');
+      }
+    });
   }
 
 }

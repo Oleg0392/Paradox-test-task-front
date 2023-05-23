@@ -11,8 +11,8 @@ export class AppComponent {
   constructor(private noteService: NoteService) {      
   }
 
-  async LoadData(): Promise<void> {
+  /*async LoadData(): Promise<void> {
     this.noteService.getData();
-  }
+  }*/
   
 }

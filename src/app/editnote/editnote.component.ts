@@ -22,5 +22,6 @@ export class EditnoteComponent {
   updateNote(): void {
     this.service.getNoteById(this.noteId).raw = this.note.raw;
     this.router.navigate(['/notelist']);
+    this.service.sendData(this.noteId);
   }
 }
