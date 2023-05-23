@@ -77,7 +77,8 @@ export class NoteService {
   }
 
   sendData(noteID: number): void {
-    let body = JSON.stringify(this.Notes[noteID]);
+    //let body = JSON.stringify(this.Notes[noteID]);
+    const body = this.Notes[noteID];
     console.log('strnotes:',body);
     
     this.client.post(this.hostUrl, body)
