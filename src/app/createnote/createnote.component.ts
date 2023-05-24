@@ -15,15 +15,16 @@ export class CreatenoteComponent {
   noteCount: number = -1;
 
   constructor(private service: NoteService, private router: Router) {
-    
+    this.noteCount = this.service.getNotes().length;
   }
 
   ngOnInit(): void {
-    this.noteCount = this.service.getNotes().length;
+    
   }
 
   addNewNote(): void {
     this.service.getNotes().push(new Note(this.noteCount,this.noteName,this.noteText));
     this.router.navigate(['/notelist']);
+    this.service.sendData(this.noteCount,true);
   }
 }

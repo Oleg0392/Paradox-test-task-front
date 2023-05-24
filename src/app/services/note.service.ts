@@ -26,12 +26,12 @@ export class NoteService {
     new Tag(9,'wqwe')
   ];
 
-  hostUrl: string = 'https://localhost:44318/api/note';
+  hostUrl: string = 'https://localhost:44318/api';
   response: any;
   Notes: Note[];
 
   constructor(private client: HttpClient) { 
-    this.client.get(this.hostUrl)
+    this.client.get(this.hostUrl + '/get/note')
     .subscribe({
       next: r => {
         this.response = r;
@@ -64,7 +64,7 @@ export class NoteService {
   }
 
   getData(): void {
-    this.client.get(this.hostUrl)
+    this.client.get(this.hostUrl + '/get/note')
     .subscribe({
       next: r => {
         this.response = r;
@@ -81,11 +81,12 @@ export class NoteService {
     this.Notes = (this.response as Note[]);
   }
 
-  sendData(noteID: number): void {
+  sendData(noteID: number, addnote: boolean): void {
     const body = this.Notes[noteID];
+    var postfix = addnote ? '/add/note' : '/upd/note';
     console.log('strnotes:',body);
     
-    this.client.post(this.hostUrl, body)
+    this.client.post(this.hostUrl + postfix, body)
     .subscribe({
       next: r => {
         console.log(r)

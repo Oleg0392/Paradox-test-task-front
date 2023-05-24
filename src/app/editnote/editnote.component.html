@@ -4,17 +4,20 @@
     <p><textarea [(ngModel)]="note.raw" rows="25" cols="70">
       {{ note.raw }}
     </textarea></p>
-    <br>
-    <p *ngIf="showTags">Тэги:</p>
-    <ul *ngFor="let tag of tagList">
+    <p><button (click)="updateNote()">Сохранить заметку</button></p>
+</div>
+<p>Тэги:</p>
+    <ul *ngFor="let tag of CurrentNoteTags">
       <li>{{ tag.title }}</li>
     </ul>
-    <p>
-      <select *ngFor="let item of SelectTags" [(ngModel)]="selected">
-        <option (click)="showNewTagField(item.tagID)">{{ item.title }}</option>
+      Выберете тэг:
+      <select>
+        <option disabled>Тэг не выбран</option>
+        <option *ngFor="let item of SelectTags">{{ item.title }}</option>
       </select>
-      <input *ngIf="showNewTagInput" type="text" [(ngModel)]="created">
-      <button (click)="addNewTag()">Добавить тэг</button></p>
+      Или создайте новый:
+      <input type="text" [(ngModel)]="newTag">
+      <p><button (click)="addNewTag()">Добавить тэг</button></p>
     <br>
-    <p><button (click)="updateNote()">Изменить заметку</button></p>
-  </div>
+    
+  

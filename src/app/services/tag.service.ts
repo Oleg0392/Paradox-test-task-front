@@ -7,12 +7,21 @@ import { Tag } from '../models/tag';
 })
 export class TagService {
 
-  tags: Tag[];
+  tags: Tag[] = []
   response: any;
   hostUrl: string;
 
   constructor(private client: HttpClient) {
       this.hostUrl = 'https://localhost:44318/api/tag';
+      this.getData();
+   }
+
+   getTags(): Tag[] {
+    return this.tags;
+   }
+   
+   getData(): void {
+    this.hostUrl = this.hostUrl;
       this.client.get(this.hostUrl)
     .subscribe({
       next: r => {

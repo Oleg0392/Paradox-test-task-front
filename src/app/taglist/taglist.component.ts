@@ -11,6 +11,7 @@ export class TaglistComponent {
   AllTags: Tag[];
 
   constructor(private service: TagService) {
-    this.AllTags = this.service.tags;
+    this.service.getData();
+    this.AllTags = this.service.getTags();
   }
 }
