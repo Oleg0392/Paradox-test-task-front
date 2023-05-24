@@ -1,9 +1,9 @@
 export class Tag {
-    id: number;
-    name: string;
+    tagID: number;
+    title: string;
 
-    constructor(tagid: number, tagname: string) {
-        this.id = tagid;
-        this.name = tagname;
+    constructor(tagid: number, tagtitle: string) {
+        this.tagID = tagid;
+        this.title = tagtitle;
     }
 }

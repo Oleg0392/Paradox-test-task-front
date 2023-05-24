@@ -1,0 +1,16 @@
+.tag-list {
+    
+    text-align: center;
+    align-items: center;
+}
+
+.tag-list-item {
+    margin-left: 180px;
+    background-color: #f0e5cd;
+    font-size: 100%;
+    color: #0c1321;
+    padding-top: 10px;
+    padding-bottom: 10px;
+	width: 900px;
+	border: 1px solid;
+}

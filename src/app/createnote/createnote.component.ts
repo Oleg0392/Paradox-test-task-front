@@ -23,7 +23,7 @@ export class CreatenoteComponent {
   }
 
   addNewNote(): void {
-    this.service.getNotes().push(new Note(this.noteCount,this.noteName,this.noteText,[]));
+    this.service.getNotes().push(new Note(this.noteCount,this.noteName,this.noteText));
     this.router.navigate(['/notelist']);
   }
 }

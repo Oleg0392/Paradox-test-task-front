@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TagService } from '../services/tag.service';
+import { Tag } from '../models/tag';
 
 @Component({
   selector: 'app-taglist',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./taglist.component.css']
 })
 export class TaglistComponent {
+  AllTags: Tag[];
 
+  constructor(private service: TagService) {
+    this.AllTags = this.service.tags;
+  }
 }

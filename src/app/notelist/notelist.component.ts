@@ -13,7 +13,6 @@ export class NotelistComponent {
   notes: Note[];
 
   constructor(private noteService: NoteService, private router: Router){
-    this.noteService.getData();
     this.notes = this.noteService.getNotes();
     console.log('notes:',this.notes);
   }

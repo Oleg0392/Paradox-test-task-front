@@ -4,5 +4,12 @@
     <p><textarea [(ngModel)]="note.raw" rows="25" cols="70">
       {{ note.raw }}
     </textarea></p>
+    <br>
+    <p *ngIf="showTags">Тэги:</p>
+    <ul *ngFor="let tag of tagList">
+      <li>{{ tag.title }}</li>
+    </ul>
+    <p><button (click)="addNewTag()">Добавить тэг</button></p>
+    <br>
     <p><button (click)="updateNote()">Изменить заметку</button></p>
   </div>
