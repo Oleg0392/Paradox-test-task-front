@@ -14,8 +14,12 @@ export class EditnoteComponent {
 
   note: Note;
   noteId: number = NaN;
+  created: string = '';
+  selected: string = '';
   tagList: Tag[] = [];
   showTags: boolean = false;
+  SelectTags: Tag[];
+  showNewTagInput: boolean = false;
 
   constructor(private route: ActivatedRoute, private service: NoteService, private router: Router, private tagService: TagService) {
     this.noteId = Number(this.route.snapshot.paramMap.get('id'));
@@ -31,7 +35,8 @@ export class EditnoteComponent {
         }
       });
     }    
-    console.log('editNote',this.noteId);
+    this.SelectTags = this.tagService.tags;
+    this.SelectTags.push(new Tag(999,'Создать новый...'));
   }
 
   updateNote(): void {
@@ -41,6 +46,23 @@ export class EditnoteComponent {
   }
 
   addNewTag(): void {
+    this.showNewTagInput = false;
+    if (this.created.length > 0 && this.selected === 'Создать новый...') {
+      this.tagService.tags.push(new Tag(this.tagService.tags.length,this.created));
+      this.note.tags += this.tagService.tags.length.toString() + ';';
+    }
+    else {
+      this.tagService.tags.forEach(t => {
+        if (t.title===this.selected){
+          if (this.note.tags.includes(t.tagID.toString() + ';')){
+            this.note.tags += t.tagID.toString() + ';';
+          }
+        }
+      });
+    }
+  }
 
+  showNewTagField(tagId: number): void{
+    if (tagId===999) this.showNewTagInput = true;
   }
 }

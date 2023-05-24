@@ -9,7 +9,12 @@
     <ul *ngFor="let tag of tagList">
       <li>{{ tag.title }}</li>
     </ul>
-    <p><button (click)="addNewTag()">Добавить тэг</button></p>
+    <p>
+      <select *ngFor="let item of SelectTags" [(ngModel)]="selected">
+        <option (click)="showNewTagField(item.tagID)">{{ item.title }}</option>
+      </select>
+      <input *ngIf="showNewTagInput" type="text" [(ngModel)]="created">
+      <button (click)="addNewTag()">Добавить тэг</button></p>
     <br>
     <p><button (click)="updateNote()">Изменить заметку</button></p>
   </div>
