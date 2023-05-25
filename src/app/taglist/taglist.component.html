@@ -1,5 +1,10 @@
 <br>
 <br>
 <div class="tag-list" *ngFor="let item of AllTags">
-    <div class="tag-list-item">{{ item.title }}</div>
+    <div class="tag-list-item">{{ item.title }}                                     |<button (click)="deleteTag(item.tagID)">Удалить</button></div>
+</div>
+<br>
+<br>
+<div class="tag-list">
+    <input type="text" [(ngModel)]="newTagTitle">|   |<button (click)="createTag()">Создать новый</button>
 </div>

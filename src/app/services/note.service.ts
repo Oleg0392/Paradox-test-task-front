@@ -8,24 +8,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NoteService {
 
-  tags1: Tag[] = [
-    new Tag(1,'sdf'),
-    new Tag(2,'fghfh')
-  ];
-
-  tags2: Tag[] = [
-    new Tag(1,'dfgfd'),
-    new Tag(2,'dfg'),
-    new Tag(5,'sag')
-  ];
-
-  tags3: Tag[] = [
-    new Tag(1,'tytr'),
-    new Tag(2,'hgjhg'),
-    new Tag(8,'uyoui'),
-    new Tag(9,'wqwe')
-  ];
-
   hostUrl: string = 'https://localhost:44318/api';
   response: any;
   Notes: Note[];
@@ -81,10 +63,19 @@ export class NoteService {
     this.Notes = (this.response as Note[]);
   }
 
-  sendData(noteID: number, addnote: boolean): void {
+  sendData(noteID: number, optype: number): void {
     const body = this.Notes[noteID];
-    var postfix = addnote ? '/add/note' : '/upd/note';
-    console.log('strnotes:',body);
+    var postfix
+    switch (optype){
+      case 1:postfix = '/add/note';
+      break;
+      case 2:postfix = '/upd/note';
+      break;
+      case 3:postfix = '/del/note';
+      break;
+      default: break;
+    }  
+    console.log('note to send:',body);
     
     this.client.post(this.hostUrl + postfix, body)
     .subscribe({

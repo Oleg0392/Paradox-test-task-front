@@ -25,6 +25,6 @@ export class CreatenoteComponent {
   addNewNote(): void {
     this.service.getNotes().push(new Note(this.noteCount,this.noteName,this.noteText));
     this.router.navigate(['/notelist']);
-    this.service.sendData(this.noteCount,true);
+    this.service.sendData(this.noteCount,1);
   }
 }
