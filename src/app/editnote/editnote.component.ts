@@ -61,6 +61,7 @@ export class EditnoteComponent {
 
   deleteNote(noteId: number): void {
     this.service.sendData(noteId,3);
+    this.router.navigate(['/notelist']);
   }
 
   addNewTag(): void {

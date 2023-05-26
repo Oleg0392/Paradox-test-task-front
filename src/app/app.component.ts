@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NoteService } from './services/note.service';
+import { TagService } from './services/tag.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,7 @@ import { NoteService } from './services/note.service';
 })
 export class AppComponent {
 
-  constructor(private noteService: NoteService) {      
+  constructor(private noteService: NoteService, private tagService: TagService) {      
   }
-
-  /*async LoadData(): Promise<void> {
-    this.noteService.getData();
-  }*/
   
 }
